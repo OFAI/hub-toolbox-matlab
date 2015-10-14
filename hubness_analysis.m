@@ -12,8 +12,8 @@ function hubness_analysis(D, classes, vectors)
 %
 %  hubness_analysis(D, classes, vectors) - Uses the distance matrix D (NxN)
 %     together with an optional class labels vector (classes) and the
-%     original (optional) data vectors (vectors) to perform a full hubness
-%     analysis
+%     original (optional) data vectors (vectors, Pts x Dims) to perform a
+%     full hubness analysis
 
     haveClasses = false;
     haveVectors = false;
@@ -42,23 +42,22 @@ function hubness_analysis(D, classes, vectors)
     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
         100*max(Nk5)/n);
     if (haveClasses == true)
-    fprintf('k=5-NN classification accurracy         : %.2f%%\n',...
+    fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
         100*knn_classification(D, classes, 5));
     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
         goodman_kruskal(D, classes));
     else
-    fprintf('k=5-NN classification accurracy         : No classes given\n');
+    fprintf('k=5-NN classification accuracy          : No classes given\n');
     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
     end
     if (haveVectors == true)
-    fprintf('original dimensionality                 : %d\n', size(vectors, 1));
+    fprintf('original dimensionality                 : %d\n', size(vectors, 2));
     fprintf('intrinsic dimensionality estimate       : %d\n',...
         round(intrinsic_dim(vectors)));
     else
     fprintf('original dimensionality                 : No vectors given\n');
     fprintf('intrinsic dimensionality estimate       : No vectors given\n');
-    end
-        
+    end  
     
     
     fprintf('\nMUTUAL PROXIMITY (Empiric/Slow):\n');
@@ -70,16 +69,69 @@ function hubness_analysis(D, classes, vectors)
     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
         100*max(Nk5)/n);
     if (haveClasses == true)
-    fprintf('k=5-NN classification accurracy         : %.2f%%\n',...
+    fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
         100*knn_classification(Dn, classes, 5));
     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
         goodman_kruskal(Dn, classes));
     else
-    fprintf('k=5-NN classification accurracy         : No classes given\n');
+    fprintf('k=5-NN classification accuracy          : No classes given\n');
     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
     end
 
-    
+%      fprintf('\nMUTUAL PROXIMITY (Gauss):\n');
+%     Dn = mutual_proximity(D, 'gauss');
+%     [Sn5, tmp, Nk5] = hubness(Dn, 5);
+%     fprintf('data set hubness (S^n=5)                : %.2f\n', Sn5);
+%     fprintf('%% of anti-hubs at k=5                   : %.2f%%\n',...
+%         100*sum(Nk5==0)/n);
+%     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
+%         100*max(Nk5)/n);
+%     if (haveClasses == true)
+%     fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
+%         100*knn_classification(Dn, classes, 5));
+%     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
+%         goodman_kruskal(Dn, classes));
+%     else
+%     fprintf('k=5-NN classification accuracy          : No classes given\n');
+%     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
+%    end
+% 
+%     fprintf('\nMUTUAL PROXIMITY (Gaussi):\n');
+%     Dn = mutual_proximity(D, 'gaussi');
+%     [Sn5, tmp, Nk5] = hubness(Dn, 5);
+%     fprintf('data set hubness (S^n=5)                : %.2f\n', Sn5);
+%     fprintf('%% of anti-hubs at k=5                   : %.2f%%\n',...
+%         100*sum(Nk5==0)/n);
+%     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
+%         100*max(Nk5)/n);
+%     if (haveClasses == true)
+%     fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
+%         100*knn_classification(Dn, classes, 5));
+%     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
+%         goodman_kruskal(Dn, classes));
+%     else
+%     fprintf('k=5-NN classification accuracy          : No classes given\n');
+%     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
+%     end
+%
+%     fprintf('\nMUTUAL PROXIMITY (Gammai):\n');
+%     Dn = mutual_proximity(D, 'gammai');
+%     [Sn5, tmp, Nk5] = hubness(Dn, 5);
+%     fprintf('data set hubness (S^n=5)                : %.2f\n', Sn5);
+%     fprintf('%% of anti-hubs at k=5                   : %.2f%%\n',...
+%         100*sum(Nk5==0)/n);
+%     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
+%         100*max(Nk5)/n);
+%     if (haveClasses == true)
+%     fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
+%         100*knn_classification(Dn, classes, 5));
+%     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
+%         goodman_kruskal(Dn, classes));
+%     else
+%     fprintf('k=5-NN classification accuracy          : No classes given\n');
+%     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
+%     end
+
     
     fprintf('\nLOCAL SCALING (Original, k=10):\n');
     Dn = local_scaling(D, 10, 'original');
@@ -90,12 +142,12 @@ function hubness_analysis(D, classes, vectors)
     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
         100*max(Nk5)/n);
     if (haveClasses == true)
-    fprintf('k=5-NN classification accurracy         : %.2f%%\n',...
+    fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
         100*knn_classification(Dn, classes, 5));
     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
         goodman_kruskal(Dn, classes));
     else
-    fprintf('k=5-NN classification accurracy         : No classes given\n');
+    fprintf('k=5-NN classification accuracy          : No classes given\n');
     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
     end
 
@@ -109,12 +161,12 @@ function hubness_analysis(D, classes, vectors)
     fprintf('%% of k=5-NN lists the largest hub occurs: %.2f%%\n',...
         100*max(Nk5)/n);
     if (haveClasses == true)
-    fprintf('k=5-NN classification accurracy         : %.2f%%\n',...
+    fprintf('k=5-NN classification accuracy          : %.2f%%\n',...
         100*knn_classification(Dn, classes, 5));
     fprintf('Goodman-Kruskal index (higher=better)   : %.3f\n',...
         goodman_kruskal(Dn, classes));
     else
-    fprintf('k=5-NN classification accurracy         : No classes given\n');
+    fprintf('k=5-NN classification accuracy          : No classes given\n');
     fprintf('Goodman-Kruskal index (higher=better)   : No classes given\n');
     end
 
@@ -134,8 +186,10 @@ function [D, classes, vectors] = load_dexter()
 
     n = 300;
     dim = 20000;
+        
     vectors = zeros(n, dim);
     classes = zeros(n, 1);
+    
     
     fid = fopen('example_datasets/dexter_train.data', 'r');
     for i=1:n
