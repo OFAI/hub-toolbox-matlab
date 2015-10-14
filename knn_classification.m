@@ -24,13 +24,25 @@ function [acc, corr, cmat] = knn_classification(D, classes, k)
         classes(i) = find(cl == classes(i));
     end
         
+    % match the class labels in 'cl' with those in 'classes'
+    cl = 1:length(cl);
+    
 	for i = 1:n
         
         seed_class = classes(i);
         
 		row = D(i, :);
 		row(i) = +Inf;
-		[tmp, idx] = sort(row);
+        
+        % Randomize, in case there are several points of same distance
+        % (especially relevant for SNN rescaling)
+        rp = randperm(size(D, 2));
+        d2 = row(rp);
+        [~, d2idx] = sort(d2, 'ascend');
+        idx = rp(d2idx);
+        
+        % OLD code, non randomized
+		%[tmp, idx] = sort(row);
         
         for j = 1:length(k)
         
