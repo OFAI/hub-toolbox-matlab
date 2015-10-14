@@ -49,7 +49,14 @@ function di = goodman_kruskal(D, classes)
         self_size = length(D_self);
         other_size = length(D_other);
         
-        [tmp, full_idx] = sort(D_full);
+        % Randomize, in case there are equal values
+        % (especially relevant for SNN rescaling)
+        rp = randperm(size(D_full,2));
+        d2 = D_full(rp);
+        [~, d2idx] = sort(d2);
+        full_idx = rp(d2idx);        
+        % OLD code, non-randomized
+        %[tmp, full_idx] = sort(D_full);
         
         
         cc = 0;

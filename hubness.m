@@ -31,7 +31,7 @@ function [Sn, Dk, Nk] = hubness(D, k, isSimilarityMatrix)
         d_self = +Inf;
         sortorder = 'ascend';
     end
-        
+            
     Dk = zeros(k, size(D, 2));
     for i = 1:size(D, 1)
         % extract distance matrix row

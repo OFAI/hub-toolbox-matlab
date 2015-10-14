@@ -1,4 +1,6 @@
 function no_dims = intrinsic_dim(X)
+% Estimate the intrinsic dimensionality of dataset X (Pts x Dims)
+%
 % Taken from the DR-Toolbox 
 % 
 % This file is part of the Matlab Toolbox for Dimensionality Reduction v0.7.2b.
