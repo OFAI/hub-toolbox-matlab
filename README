@@ -1,7 +1,7 @@
------------------------
- HUB TOOLBOX VERSION 2 
- November 5, 2013
------------------------
+-------------------------
+ HUB TOOLBOX VERSION 2.1 
+ October 16, 2015
+-------------------------
 
 This is the HUB TOOLBOX for Matlab/Octave
 (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
@@ -65,36 +65,49 @@ selection challenge.
 http://archive.ics.uci.edu/ml/datasets/Dexter
 
 
+>> hubness_analysis
+
+NO PARAMETERS GIVEN! Loading & evaluating DEXTER data set.
+
+DEXTER is a text classification problem in a bag-of-word
+representation. This is a two-class classification problem
+with sparse continuous input variables.
+This dataset is one of five datasets of the NIPS 2003 feature
+selection challenge.
+
+http://archive.ics.uci.edu/ml/datasets/Dexter
+
+
 Hubness Analysis
 
 ORIGINAL DATA:
 data set hubness (S^n=5)                : 4.22
 % of anti-hubs at k=5                   : 26.67%
 % of k=5-NN lists the largest hub occurs: 23.67%
-k=5-NN classification accurracy         : 56.67%
+k=5-NN classification accuracy          : 80.33%
 Goodman-Kruskal index (higher=better)   : 0.104
-original dimensionality                 : 300
+original dimensionality                 : 20000
 intrinsic dimensionality estimate       : 161
 
 MUTUAL PROXIMITY (Empiric/Slow):
-data set hubness (S^n=5)                : 0.58
+data set hubness (S^n=5)                : 0.64
 % of anti-hubs at k=5                   : 3.33%
-% of k=5-NN lists the largest hub occurs: 5.67%
-k=5-NN classification accurracy         : 67.00%
-Goodman-Kruskal index (higher=better)   : 0.136
+% of k=5-NN lists the largest hub occurs: 6.00%
+k=5-NN classification accuracy          : 90.00%
+Goodman-Kruskal index (higher=better)   : 0.132
 
 LOCAL SCALING (Original, k=10):
 data set hubness (S^n=5)                : 1.42
 % of anti-hubs at k=5                   : 5.33%
 % of k=5-NN lists the largest hub occurs: 7.67%
-k=5-NN classification accurracy         : 66.00%
+k=5-NN classification accuracy          : 86.00%
 Goodman-Kruskal index (higher=better)   : 0.156
 
 SHARED NEAREST NEIGHBORS (k=10):
-data set hubness (S^n=5)                : 1.55
-% of anti-hubs at k=5                   : 7.00%
-% of k=5-NN lists the largest hub occurs: 7.33%
-k=5-NN classification accurracy         : 60.67%
-Goodman-Kruskal index (higher=better)   : 0.369
+data set hubness (S^n=5)                : 1.77
+% of anti-hubs at k=5                   : 5.67%
+% of k=5-NN lists the largest hub occurs: 8.67%
+k=5-NN classification accuracy          : 73.33%
+Goodman-Kruskal index (higher=better)   : 0.152
 
 >>
