@@ -52,11 +52,11 @@ function [acc, corr, cmat] = knn_classification(D, classes, k)
 
             % "tie": use nearest neighbor
             if (length(id) > 1)
-                if (seed_class == nn_class) 
+                if (seed_class == nn_class(1)) 
                     acc(j) = acc(j) + 1/n;
                     corr(i,j) = 1;
                 end
-                cmat(seed_class, nn_class) = cmat(seed_class, nn_class) + 1;
+                cmat(seed_class, nn_class(1)) = cmat(seed_class, nn_class(1)) + 1;
 
             % majority vote        
             else
