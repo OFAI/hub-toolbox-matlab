@@ -5,7 +5,9 @@ function Dmp = mutual_proximity(D, type)
 %
 % This file is part of the HUB TOOLBOX available at
 % http://ofai.at/research/impml/projects/hubology.html
+% https://github.com/OFAI/hub-toolbox-matlab/
 % (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
+% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>
 %
 % Usage:
 %   Dmp = mutual_proximity(D, type) - Applies MP on the distance matrix 'D'
@@ -34,7 +36,8 @@ function Dmp = mutual_proximity(D, type)
         elseif (strcmp(type, 'gauss') == 1)
             mp_func = @mp_gauss;
         elseif (strcmp(type, 'gaussi') == 1)
-            mp_func = @mp_gaussi;
+% (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
+% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>            mp_func = @mp_gaussi;
         elseif (strcmp(type, 'gammai') == 1)
             mp_func = @mp_gammai;
         else

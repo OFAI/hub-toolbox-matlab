@@ -4,7 +4,9 @@ function [Sn, Dk, Nk] = hubness(D, k, isSimilarityMatrix)
 %
 % This file is part of the HUB TOOLBOX available at
 % http://ofai.at/research/impml/projects/hubology.html
+% https://github.com/OFAI/hub-toolbox-matlab/
 % (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
+% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>
 %
 % Usage:
 %   Sn = hubness(D) - Computes the hubness (Sk) of the n=5 occurrence histogram

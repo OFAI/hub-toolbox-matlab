@@ -4,7 +4,9 @@ function Dsnn = shared_nn(D, k)
 %
 % This file is part of the HUB TOOLBOX available at
 % http://ofai.at/research/impml/projects/hubology.html
+% https://github.com/OFAI/hub-toolbox-matlab/
 % (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
+% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>
 %
 % Usage:
 %   Dsnn = shared_nn(D, k) - Use SNN with a neighborhood radius of k on the

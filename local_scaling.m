@@ -6,7 +6,9 @@ function Dls = local_scaling(D, k, type)
 %
 % This file is part of the HUB TOOLBOX available at
 % http://ofai.at/research/impml/projects/hubology.html
+% https://github.com/OFAI/hub-toolbox-matlab/
 % (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
+% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>
 %
 % Usage:
 %   Dls = local_scaling(D, k, type) - Applies local scaling to the distance
