@@ -36,8 +36,7 @@ function Dmp = mutual_proximity(D, type)
         elseif (strcmp(type, 'gauss') == 1)
             mp_func = @mp_gauss;
         elseif (strcmp(type, 'gaussi') == 1)
-% (c) 2013, Dominik Schnitzer <dominik.schnitzer@ofai.at>
-% (c) 2016, Roman Feldbauer <roman.feldbauer@ofai.at>            mp_func = @mp_gaussi;
+            mp_func = @mp_gaussi;
         elseif (strcmp(type, 'gammai') == 1)
             mp_func = @mp_gammai;
         else
@@ -85,8 +84,10 @@ end
 
 function Dmp = mp_gaussi(D)
 
-    mu = mean(D);
-    sd = std(D);
+    D(1:length(D)+1:numel(D)) = nan;
+    mu = nanmean(D);
+    sd = nanstd(D);
+    D(1:length(D)+1:numel(D)) = 0;
 
     Dmp = zeros(size(D), class(D));
     n = length(D);
@@ -159,10 +160,12 @@ end
 
 function Dmp = mp_gammai(D)
 
-    mu = mean(D);
-    va = var(D);
+    D(1:length(D)+1:numel(D)) = nan;
+    mu = nanmean(D);
+    va = nanvar(D);
     A = (mu.^2)./va;
     B = va ./ mu;
+    D(1:length(D)+1:numel(D)) = 0;
     
     Dmp = zeros(size(D), class(D));
     n = size(D, 1);
