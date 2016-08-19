@@ -67,7 +67,7 @@ function Dmp = mp_empiric(D)
     
         sIJ_intersect = sum((dI > d) & (dJ > d), 2); 
     
-        sIJ_overlap = 1 - (sIJ_intersect / n); 
+        sIJ_overlap = 1 - (sIJ_intersect / (n - 1)); 
         Dmp_list{i} = sIJ_overlap;
     end 
     
