@@ -60,7 +60,7 @@ function di = goodman_kruskal(D, classes)
         % Calc number of quadruples with equal distance
         n_equidistant = 0;
         sdf = sort(D_full);
-        equi_mask = boolean(zeros(size(sdf)));
+        equi_mask = logical(zeros(size(sdf)));
         % Positions with repeated values
         equi_mask(2:end) = sdf(2:end) == sdf(end:-1:2);
         equi_dist = sdf(equi_mask);
